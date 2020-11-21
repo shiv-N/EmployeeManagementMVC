@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CommonLayer.Response.EmployeeDetailModel>
+
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EmployeeList</h2>
+
+<p>
+    @Html.ActionLink("Register", "Register","Employee")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit",new { item.EmpId,item.Name,item.Gender
+                    ,item.Department,item.SalaryId,item.StartDate,item.Description})" class="btn btn-success">Edit</a> |
+                <a href="@Url.Action("Delete",new { item.EmpId })" class="btn btn-danger">Delete</a> 
+            </td>
+        </tr>
+    }
+
+</table>
