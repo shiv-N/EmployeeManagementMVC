@@ -1,9 +1,11 @@
 using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
+using EmployeeManagementMVC.Controllers;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Services;
 using System.Web.Mvc;
 using Unity;
+using Unity.Injection;
 using Unity.Mvc5;
 
 namespace EmployeeManagementMVC
@@ -20,6 +22,7 @@ namespace EmployeeManagementMVC
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IEmployeeBL, EmployeeBL>();
             container.RegisterType<IEmployeeRL, EmployeeRL>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

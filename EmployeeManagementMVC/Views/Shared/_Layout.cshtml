@@ -9,8 +9,8 @@
 
 </head>
 <body style=" padding-top: 0px;">
-    <div>
-        @*<div class="container">
+    @*<div>
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -29,25 +29,26 @@
             </div>
         </div>*@
         <header class="flex-row-center header"
-                style="padding: 5px 0px 5px 40px;background-color: #82a70c;color: white;
+                style="        padding: 12px 30px 0px 40px;display: flex;flex-direction: column;
+        background-color: #82a70c;
+        color: white;
         /* font: normal normal normal 28px/37px Roboto; */
         font-size: 28px;
         font-family: Roboto;
         text-transform: capitalize;
         opacity: 1;">
 
-            <div>
-                <a href="@Url.Action("EmployeeList", "Employee")" style="display:flex;color:white;margin-right:85%">
+            <div style=" display: flex; justify-content: space-between;">
+                <a href="@Url.Action("EmployeeList", "Employee")" style="display:flex;color:white;">
                     <img src="~/Content/Images/Emplogo.png" alt="" style="height: fit-content;">
                     <div>
                         <span class="emp-text">EMPLOYEE</span><br>
                         <span class="emp-text emp-payroll">PAYROLL</span>
                     </div>
                 </a>
-
+                @Html.Partial("_LoginPartial")
             </div>
         </header>
-    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
