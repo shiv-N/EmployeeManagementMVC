@@ -22,13 +22,29 @@ namespace EmployeeManagementMVC.Controllers
         // GET: Employee
         public ActionResult Register()
         {
-            return View();
+            var sessionStorage = this.Session["LoginMail"] as string;
+            if (sessionStorage != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Employee/Edit/5
         public ActionResult Edit(RegisterEmpRequestModel model)
         {
-            return View(model);
+            var sessionStorage = this.Session["LoginMail"] as string;
+            if (sessionStorage != null)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult EditEmployee(RegisterEmpRequestModel employee)
@@ -60,8 +76,16 @@ namespace EmployeeManagementMVC.Controllers
 
         public ActionResult EmployeeList()
         {
-            List<EmployeeDetailModel> list = this.empService.GetAllEmployee();
-            return View(list);
+            var sessionStorage = this.Session["LoginMail"] as string;
+            if (sessionStorage != null)
+            {
+                List<EmployeeDetailModel> list = this.empService.GetAllEmployee();
+                return View(list);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // POST: Employee/Edit/5

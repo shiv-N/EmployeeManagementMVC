@@ -57,8 +57,17 @@ namespace EmployeeManagementMVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            var sessionStorage = this.Session["LoginMail"] as string;
+            if (sessionStorage != null)
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return RedirectToAction("EmployeeList", "Employee");
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            }
         }
 
         //
@@ -80,6 +89,8 @@ namespace EmployeeManagementMVC.Controllers
             {
                 case SignInStatus.Success:
                     //return RedirectToLocal(returnUrl);
+                    //Session["Id"] = (await UserManager.FindByIdAsync(User.Identity.GetUserId())).ToString();
+                    this.Session["LoginMail"] = model.Email;
                     return RedirectToAction("EmployeeList", "Employee");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -392,6 +403,7 @@ namespace EmployeeManagementMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            this.Session["LoginMail"] = null;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
         }

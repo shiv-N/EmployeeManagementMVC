@@ -5,67 +5,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EmployeeList</h2>
+<div style="display: flex; margin-top: 10px; justify-content: space-between;">
+    <h2>Employee Details</h2>
 
-<p>
-    @Html.ActionLink("Register", "Register","Employee")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Department)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+    <p style="margin-top: 2%;">
+        @*@Html.ActionLink("Register", "Register", "Employee")*@
+        <a href="@Url.Action("Register", "Employee")" class="btn btn-success">Add User</a>
+    </p>
+</div>
+        <table class="table" style="margin-top: 20px;">
+            <tr>
+                <th>
+                    @Html.DisplayName("NAME")
+                </th>
+                <th>
+                    @Html.DisplayName("GENDER")
+                </th>
+                <th>
+                    @Html.DisplayName("DEPARTMENT")
+                </th>
+                <th>
+                    @Html.DisplayName("SALARY")
+                </th>
+                <th>
+                    @Html.DisplayName("START DATE")
+                </th>
+                <th>
+                    @Html.DisplayName("ACTIONS")
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a href="@Url.Action("Edit",new { item.EmpId,item.Name,item.Gender
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit",new { item.EmpId,item.Name,item.Gender
                     ,item.Department,item.SalaryId,item.StartDate,item.Description})" class="btn btn-success">Edit</a> |
-                <a href="@Url.Action("Delete",new { item.EmpId })" class="btn btn-danger">Delete</a> 
-            </td>
-        </tr>
-    }
+                        <a href="@Url.Action("Delete",new { item.EmpId })" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
