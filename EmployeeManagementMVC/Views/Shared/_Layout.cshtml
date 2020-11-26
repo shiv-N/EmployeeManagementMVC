@@ -6,7 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/SiteCSS/header.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body style=" padding-top: 0px;">
     @*<div>
@@ -28,7 +31,19 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>*@
-        <header class="flex-row-center header"
+
+    <header class="toolbar">
+        <a href="@Url.Action("EmployeeList", "Employee")" class="logoImage">
+            <img src="~/Content/Images/Emplogo.png" alt="">
+            <div>
+                <span class="emp-text-header">EMPLOYEE</span><br>
+                <span class="emp-text-header emp-payroll-header">PAYROLL</span>
+            </div>
+        </a>
+        @Html.Partial("_LoginPartial")
+    </header>
+
+        @*<header class="flex-row-center header"
                 style="        padding: 12px 30px 0px 40px;display: flex;flex-direction: column;
         background-color: #82a70c;
         color: white;
@@ -48,7 +63,7 @@
                 </a>
                 @Html.Partial("_LoginPartial")
             </div>
-        </header>
+        </header>*@
     <div class="container body-content">
         @RenderBody()
         <hr />

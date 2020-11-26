@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CommonLayer.Response
@@ -20,6 +21,7 @@ namespace CommonLayer.Response
 
         public int SalaryId { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime StartDate { get; set; }
 
         public string Description { get; set; }
